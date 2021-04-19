@@ -1,18 +1,21 @@
-# NewsCLIPpings Dataset
+# [NewsCLIPpings Dataset](https://arxiv.org/abs/2104.05893)
 
-Our dataset for image-caption mismatch in the news. You can find our paper [here](https://arxiv.org/pdf/2104.05893.pdf). 
+Our dataset for image-caption mismatch in the news. 
 For inquiries and requests, please contact graceluo@berkeley.edu
 
 ## Getting Started
+1. Request the [VisualNews Dataset](https://github.com/FuxiaoLiu/VisualNews-Repository). 
+Place the files under the `visual_news` folder.
+2. Run `./download.sh` to download our matches and populate the `news_clippings` folder. 
+3. Consider doing analyses of your own using the embeddings we have provided.
+
+All of the ids and image paths provided in our `data/` folder exactly correspond to those listed in the `data.json` file in VisualNews. If you have trouble running our download script, you can find everything at [http://news_clippings.berkeleyvision.org](http://news_clippings.berkeleyvision.org).
+
 <!-- Set up MMF
 ```
 pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/torch_stable.html
 ```
  -->
-1. Request the [VisualNews Dataset](https://github.com/FuxiaoLiu/VisualNews-Repository).
-2. Download our matches in the `data/` folder of [http://news_clippings.berkeleyvision.org](http://news_clippings.berkeleyvision.org). All of the ids and image paths exactly correspond to those listed in the `data.json` file in VisualNews.
-3. Consider doing analyses of your own using the embeddings we have provided in `embeddings/`.
-
 <!-- 3. Example command for training / finetuning with MMF.
 ```
 MMF_USER_DIR="." nohup mmf_run config="./configs/experiments/clip.yaml" model=clip dataset=foil run_type=train > clip_train.out &
@@ -26,7 +29,6 @@ news_clippings
 │
 └── data/
 └── embeddings/
-└── your_notebook.ipynb
 
 visual_news
 │
@@ -45,11 +47,10 @@ visual_news
 Here's an example of how you can start using our matches:
 ```
     import json
-    your_path = ""
-    visual_news_data = json.load(open(f"{your_path}/visualnews/origin/data.json"))
+    visual_news_data = json.load(open(f"visualnews/origin/data.json"))
     visual_news_data_mapping = {ann["id"]: ann for ann in visual_news_data}
     
-    data = json.load(open(f"{your_path}/news_clippings/data/merged_balanced/val.json"))
+    data = json.load(open(f"news_clippings/data/merged_balanced/val.json"))
     annotations = data["annotations"]
     ann = annotations[0]
     
@@ -71,20 +72,25 @@ All embeddings are dictionaries of {id: numpy array} stored in pickle files for 
     print(clip_image_embeddings[id])
 ```
 
-- `clip_image_embeddings`: 512-dim image embeddings from [CLIP](https://github.com/openai/CLIP) ViT-B/32
-- `clip_text_embeddings`: 512-dim caption embeddings from [CLIP](https://github.com/openai/CLIP) ViT-B/32
-- `sbert_embeddings`: 768-dim caption embeddings from [SBERT-WK](https://github.com/BinWang28/SBERT-WK-Sentence-Embedding)
-- `places_resnet50`: 2048-dim image embeddings using ResNet50 trained on [Places365](https://github.com/CSAILVision/places365). 
+- `clip_image_embeddings`: 512-dim image embeddings from [CLIP](https://github.com/openai/CLIP) ViT-B/32. <br />
+Contains embeddings for samples in all splits.
+- `clip_text_embeddings`: 512-dim caption embeddings from [CLIP](https://github.com/openai/CLIP) ViT-B/32. <br />
+Contains embeddings for samples in all splits.
+- `sbert_embeddings`: 768-dim caption embeddings from [SBERT-WK](https://github.com/BinWang28/SBERT-WK-Sentence-Embedding). <br />
+Contains embeddings for samples in all splits.
+- `places_resnet50`: 2048-dim image embeddings using ResNet50 trained on [Places365](https://github.com/CSAILVision/places365). <br />
+Contains embeddings only for samples in the `scene_resnet_place` split (i.e. [PERSON] entities were not detected in the caption).
 
 The following embedding types were not used in the construction of our dataset, but you may find it useful.
-- `facenet_embeddings`: 512-dim embeddings for each face detected in the images using [FaceNet](https://github.com/TIBHannover/cross-modal_entity_consistency/blob/master/visual_descriptors/person_embedding.py). If no faces were detected, returns `None`. 
+- `facenet_embeddings`: 512-dim embeddings for each face detected in the images using [FaceNet](https://github.com/TIBHannover/cross-modal_entity_consistency/blob/master/visual_descriptors/person_embedding.py). If no faces were detected, returns `None`. <br />
+Contains embeddings only for samples in the `person_sbert_text_text` split (i.e. [PERSON] entities were detected in the caption).
 
 ## Available Upon Request
 We have additional metadata available upon request, such as the [spaCy](https://spacy.io) and [REL](https://github.com/informagi/REL) named entities, timestamp, location of the original article content, etc.
 
 We also have `sbert_embeddings_dissecting`, which has an embedding for each token and its weighting from running the "dissecting" setting of [SBERT-WK](https://github.com/BinWang28/SBERT-WK-Sentence-Embedding), available upon request. 
  
-# Citing
+## Citing
 ```
 @misc{luo2021newsclippings,
       title={NewsCLIPpings: Automatic Generation of Out-of-Context Multimodal Media}, 
