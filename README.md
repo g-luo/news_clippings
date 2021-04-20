@@ -3,10 +3,13 @@
 Our dataset with automatically generated out-of-context image-caption pairs in the news media. 
 For inquiries and requests, please contact graceluo@berkeley.edu.
 
+## Requirements
+Make sure you are running Python 3.6+.
+
 ## Getting Started
 1. Request the [VisualNews Dataset](https://github.com/FuxiaoLiu/VisualNews-Repository). 
 Place the files under the `visual_news` folder.
-2. Run `./download.sh` to download our matches and populate the `news_clippings` folder (place into `news_clippings/data/`). 
+2. Run [`./download.sh`](https://github.com/g-luo/news_clippings/blob/master/download.sh) to download our matches and populate the `news_clippings` folder (place into `news_clippings/data/`). 
 3. Consider doing analyses of your own using the embeddings we have provided (place into `news_clippings/embeddings/`).
 
 All of the ids and image paths provided in our `data/` folder exactly correspond to those listed in the `data.json` file in VisualNews. 
@@ -50,10 +53,10 @@ The data is ordered such that every even sample is pristine, and the next sample
 Here's an example of how you can start using our matches:
 ```
     import json
-    visual_news_data = json.load(open(f"visualnews/origin/data.json"))
+    visual_news_data = json.load(open("visualnews/origin/data.json"))
     visual_news_data_mapping = {ann["id"]: ann for ann in visual_news_data}
     
-    data = json.load(open(f"news_clippings/data/merged_balanced/val.json"))
+    data = json.load(open("news_clippings/data/merged_balanced/val.json"))
     annotations = data["annotations"]
     ann = annotations[0]
     
@@ -85,7 +88,7 @@ All embeddings are dictionaries of {id: numpy array} stored in pickle files for 
 
 ```
     import pickle
-    clip_image_embeddings = pickle.load(open("clip_image_embeddings/test.pkl", "rb"))
+    clip_image_embeddings = pickle.load(open("news_clippings/embeddings/clip_image_embeddings/test.pkl", "rb"))
     id = 701864
     print(clip_image_embeddings[id])
 ```
