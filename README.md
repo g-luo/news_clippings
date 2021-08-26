@@ -1,5 +1,7 @@
 # [NewsCLIPpings Dataset](https://arxiv.org/abs/2104.05893)
 
+[![DOI](https://zenodo.org/badge/355308357.svg)](https://zenodo.org/badge/latestdoi/355308357)
+
 Our dataset with automatically generated out-of-context image-caption pairs in the news media. 
 For inquiries and requests, please contact graceluo@berkeley.edu.
 
