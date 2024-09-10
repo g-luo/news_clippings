@@ -95,10 +95,8 @@ All embeddings are dictionaries of {id: numpy array} stored in pickle files for 
     print(clip_image_embeddings[id])
 ```
 
-## Available Upon Request
-We have additional metadata available upon request, such as the [spaCy](https://spacy.io) and [REL](https://github.com/informagi/REL) named entities, timestamp, location of the original article content, etc.
-
-We also have `sbert_embeddings_dissecting`, which has an embedding for each token and its weighting from running the "dissecting" setting of [SBERT-WK](https://github.com/BinWang28/SBERT-WK-Sentence-Embedding), available upon request.
+## Metadata
+We have additional metadata, such as the [spaCy](https://spacy.io) and [REL](https://github.com/informagi/REL) named entities, timestamp, location of the original article content, etc.
 
 ## Training
 To run the benchmarking experiments we reported in our paper, look at the README for `news_clippings_training/`.
