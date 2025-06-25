@@ -1,15 +1,16 @@
-# [NewsCLIPpings Dataset](https://arxiv.org/abs/2104.05893)
+# NewsCLIPpings: Automatic Generation of Out-of-Context Multimodal Media
 
-[![DOI](https://zenodo.org/badge/355308357.svg)](https://zenodo.org/badge/latestdoi/355308357)
+**Grace Luo, Trevor Darrell, Anna Rohrbach**
 
-Our dataset with automatically generated out-of-context image-caption pairs in the news media. 
-For inquiries and requests, please contact graceluo@berkeley.edu.
+This repository hosts the training code and dataset of NewsCLIPpings. The dataset contains automatically generated out-of-context image-caption pairs in the news media. You can download and set up the data by following the steps below.
+
+[[`arXiv`](https://arxiv.org/abs/2104.05893)]
 
 ## Requirements
 Make sure you are running Python 3.6+.
 
 ## Getting Started
-1. Request the [VisualNews Dataset](https://github.com/FuxiaoLiu/VisualNews-Repository). 
+1. Download the [VisualNews Dataset](https://github.com/FuxiaoLiu/VisualNews-Repository) from [this url](https://www.cs.rice.edu/~vo9/visualnews). 
 Place the files under the `visual_news` folder.
 2. Run [`./download.sh`](https://github.com/g-luo/news_clippings/blob/master/download.sh) to download our matches and populate the `news_clippings` folder (place into `news_clippings/data/`). 
 3. Consider doing analyses of your own using the embeddings we have provided (place into `news_clippings/embeddings/`).
@@ -32,16 +33,6 @@ visual_news
 │        ...
 └── ...
 ```
-
-<!-- Set up MMF
-```
-pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/torch_stable.html
-```
- -->
-<!-- 3. Example command for training / finetuning with MMF.
-```
-MMF_USER_DIR="." nohup mmf_run config="./configs/experiments/clip.yaml" model=clip dataset=foil run_type=train > clip_train.out &
-``` -->
 
 ## Data Format
 The data is ordered such that every even sample is pristine, and the next sample is its associated falsified sample. 
@@ -104,52 +95,10 @@ To run the benchmarking experiments we reported in our paper, look at the README
 ## Citing
 If you find our dataset useful for your research, please, cite the following paper:
 ```
-@article{luo2021newsclippings,
+@inproceedings{luo2021newsclippings,
   title={NewsCLIPpings: Automatic Generation of Out-of-Context Multimodal Media},
   author={Luo, Grace and Darrell, Trevor and Rohrbach, Anna},
-  journal={arXiv:2104.05893},
+  journal={EMNLP},
   year={2021}
 }
 ```
-<!--
-```
-@misc{singh2020mmf,
- author =       {Singh, Amanpreet and Goswami, Vedanuj and Natarajan, Vivek and Jiang, Yu and Chen, Xinlei and Shah, Meet and
-                Rohrbach, Marcus and Batra, Dhruv and Parikh, Devi},
- title =        {MMF: A multimodal framework for vision and language research},
- howpublished = {\url{https://github.com/facebookresearch/mmf}},
- year =         {2020}
-}
-@misc{liu2020visualnews,
-      title={VisualNews : Benchmark and Challenges in Entity-aware Image Captioning}, 
-      author={Fuxiao Liu and Yinghan Wang and Tianlu Wang and Vicente Ordonez},
-      year={2020},
-      eprint={2010.03743},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-@misc{radford2021learning,
-      title={Learning Transferable Visual Models From Natural Language Supervision}, 
-      author={Alec Radford and Jong Wook Kim and Chris Hallacy and Aditya Ramesh and Gabriel Goh and Sandhini Agarwal and Girish Sastry and Amanda Askell and Pamela Mishkin and Jack Clark and Gretchen Krueger and Ilya Sutskever},
-      year={2021},
-      eprint={2103.00020},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
- @article{zhou2017places,
-   title={Places: A 10 million Image Database for Scene Recognition},
-   author={Zhou, Bolei and Lapedriza, Agata and Khosla, Aditya and Oliva, Aude and Torralba, Antonio},
-   journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-   year={2017},
-   publisher={IEEE}
-}
-@misc{wang2020sbertwk,
-      title={SBERT-WK: A Sentence Embedding Method by Dissecting BERT-based Word Models}, 
-      author={Bin Wang and C. -C. Jay Kuo},
-      year={2020},
-      eprint={2002.06652},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}
-```
--->
